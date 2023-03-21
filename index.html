@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Montreal Weather</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body style="overflow-x: hidden;">
+    <nav class="navbar navbar-expand-lg bg-light py-0 position-fixed">
+        <div class="container-fluid py-2 bg-inf text-white-50">
+            <a class="navbar-brand text-info fw-bolder fs-3" href="#">Montreal Weather</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link" href="#one day">ONE DAY</a>
+                    <a class="nav-link" href="#several days">SEVERAL DAYS</a>
+                    <a class="nav-link" href="#month">MONTH </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <section class="container-fluid p-0 position-relative w-100 h-100vh text-white fw-bolder" id="one day">
+        <video class="position-absolute" style="margin-top:-9.5rem;" loop autoplay muted >
+            <source src="./media/clouds-64767.mp4" type="video/mp4"/>
+            Your browser does not support the video tag.
+        </video>
+        <article class="position-absolute top-0 bottom-0 slice2 row p-5">
+            <div class="col-md-6 text-center row justify-content-center align-items-center">
+                <div>
+                    <img id="mainImg" src="./media/sun.gif" alt="img" class="w-50 rounded-circle">
+                    <p class="fs-1 mt-5 fw-bolder">Montreal, Qc Meteo :<br /> <span id="nowDate"></span>
+
+                    </p>
+
+                </div>
+            </div>
+            <div class="col-md-6 row align-items-center flex-column justify-content-center text-center">
+                <!-- <p class="fs-1">Montreal, Qc Meteo : <br /> February 08, 2023 </p> -->
+                <p class="display-3 mt-5 fw-semibold">Tum: <span id="nowTemp"></span> °C</p>
+                <p class="display-3 mt-5">Min: <span id="minTempToday"></span> °C</p>
+                <p class="display-3 mt-5">Max: <span id="maxTempToday"></span> °C</p>
+            </div>
+        </article>
+    </section>
+    <section class="container text-center my-5 py-5" id="several days">
+        <h1 class="my-4 text-uppercase">information several days</h1>
+        <article class="btn-group py-4" role="group" aria-label="Basic example" id="btns">
+            <button type="button" class="btn btn-outline-dark px-4" value="3">3 days</button>
+            <button type="button" class="btn btn-outline-dark px-4" value="7">7 days</button>
+            <button type="button" class="btn btn-outline-dark px-4" value="14">14 days</button>
+        </article>
+        <article>
+            <div class="row row-cols-1 justify-content-center row-cols-md-2 row-cols-xl-3 g-4" id="daysContainer">
+
+            </div>
+        </article>
+    </section>
+    <section class="container py-5 text-center" id="month">
+        <h1 class="my-4 text-uppercase py-4">month info</h1>
+        <article class="row flex-column flex-md-row justify-content-center">
+            <h2 class="fs-2 col">Montreal, mounthly statistics :</h2>
+            <select class="form-select col" id="selectBox" aria-label="Default select example">
+                <option selected>Open this select menu</option>
+                <option value="1">January</option>
+                <option value="2">February</option>
+                <option value="3">March</option>
+                <option value="4">April</option>
+                <option value="5">May</option>
+                <option value="6">June</option>
+                <option value="7">July</option>
+                <option value="8">August</option>
+                <option value="9">September</option>
+                <option value="10">October</option>
+                <option value="11">November</option>
+                <option value="12">December</option>
+            </select>
+        </article>
+        <article class="row flex-column flex-md-row align-items-center justify-content-center my-5">
+            <div class="col-4 row flex-column justify-content-center align-items-center text-info my-4">
+                <div
+                    class="rounded-circle row justify-content-center align-items-center display-2 fw-bolder bg-light num">
+                    <div> <span id="minValueInMonth"></span>°C </div>
+
+                </div>
+                <h2 class="mt-3">Minimum</h2>
+            </div>
+            <div class="col-4 row flex-column justify-content-center align-items-center  text-success my-4">
+                <div
+                    class="rounded-circle row justify-content-center align-items-center display-1 fw-bolder num bg-light">
+                    <div> <span id="avarageValueInMonth">4</span>°C </div>
+
+                </div>
+                <h2 class="mt-3">Average</h2>
+            </div>
+            <div class="col-4 row flex-column justify-content-center align-items-center text-danger my-4">
+                <div
+                    class="rounded-circle row justify-content-center align-items-center display-1 fw-bolder num bg-light">
+                    <div> <span id="maxValueInMonth"></span>°C</div>
+
+                </div>
+                <h2 class="mt-3">Maximum</h2>
+            </div>
+        </article>
+        <!-- start temp chart -->
+        <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+        <script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
+        <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+        <div id="charContanir">
+
+            <div id="chartdiv"></div>
+        </div>
+        <!-- end temp chart -->
+    </section>
+    <script type="module" src="./js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>
